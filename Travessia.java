@@ -62,7 +62,7 @@ public class Travessia {
 			combustivel--;
 		}
 		else if(posicao==0){
-			System.out.println("Combustivel ate' a boca");
+			System.out.println("Tanque cheio!");
 			combustivel = 6;
 		}
 		else if(posicao==9){
