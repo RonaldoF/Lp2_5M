@@ -20,7 +20,7 @@ public class Travessia {
 				"seu caminhao possui 6 unidades de gasolina, e para se locomover\n" +
 				"ele utiliza uma unidade de combustivel, voce pode largar uma unidade\n" +
 				"de combustivel durante o percurso para recarregar mais tarde.\n" +
-				"No acampamento inicial o combustivel � ilimitado e seu caminhao\n" +
+				"No acampamento inicial o combustivel e' ilimitado e seu caminhao\n" +
 				"reabastece por completo.");
 		do {	
 			System.out.println("\n\nPara movimentar digite:\n" +
@@ -62,7 +62,7 @@ public class Travessia {
 			combustivel--;
 		}
 		else if(posicao==0){
-			System.out.println("Combustivel at� a boca");
+			System.out.println("Combustivel ate' a boca");
 			combustivel = 6;
 		}
 		else if(posicao==9){
@@ -139,7 +139,7 @@ public class Travessia {
 			st+="\nInicio, caminhao reabastecido";
 		}else{
 
-			st += "\n"+posicao+"� posicao";
+			st += "\n"+posicao+"e' posicao";
 		}
 		st += "\nGasolina: "+combustivel+
 				"\nCombustivel nesta posicao do mapa: "+mapa[posicao];
