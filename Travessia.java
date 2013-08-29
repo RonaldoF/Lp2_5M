@@ -15,7 +15,7 @@ public class Travessia {
 		Scanner scan = new Scanner(System.in);
 		Travessia caminhao = new Travessia();
 		//comando = scan.nextLine().toUpperCase();
-		//System.out.println("posi��o "+posicao+"\ngasolina "+combustivel);
+		//System.out.println("posicao "+posicao+"\ngasolina "+combustivel);
 		System.out.println("TRAVESSIA DO DESERTO\n\n\n" +
 				"Voce esta em um acampamento e tem que atravessar um deserto\n" +
 				"seu caminhao possui 6 unidades de gasolina, e para se locomover\n" +
@@ -58,16 +58,17 @@ public class Travessia {
 		} while (true);
 	}
 	public void avancar() {
-		if(combustivel>0){
+		if((combustivel>0)&&(posicao!=mapa.length-1)){
 			posicao++;
 			combustivel--;
 		}
-		else if(posicao==9){
+		else if(posicao==(TAMANHO-1)){
 			System.out.println("GANHOU!");
 			System.exit(0);
 		}
 		else if((combustivel==0)&&(posicao!=0)){
 			System.out.println("\nPERDEU!");
+			combustivel=0;
 			System.exit(0);
 		}
 	}
@@ -81,6 +82,7 @@ public class Travessia {
 			}
 			if((posicao!=0)&&(combustivel==0)){
 				System.out.println("\nPERDEU!");
+				combustivel=0;
 				System.exit(0);
 			}
 		}
@@ -107,17 +109,9 @@ public class Travessia {
 		}
 
 		if(mapa[posicao]>0){
-			if(combustivel>MAX_TANQUE){
 				combustivel++;
 				mapa[posicao]--;
-			}else{
-				combustivel=MAX_TANQUE;
 			}
-		}
-
-
-
-
 	}
 	public String regras(){
 		String reg = "\n____________________________________________________________________\n" +
@@ -137,7 +131,7 @@ public class Travessia {
 			st+="\nInicio, caminhao reabastecido";
 		}else{
 
-			st += "\n"+posicao+"e' posicao";
+			st += "\nposicao e': "+posicao;
 		}
 		st += "\nGasolina: "+combustivel+
 				"\nCombustivel nesta posicao do mapa: "+mapa[posicao];
