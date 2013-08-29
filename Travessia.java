@@ -14,13 +14,13 @@ public class Travessia {
 		Scanner scan = new Scanner(System.in);
 		Travessia caminhao = new Travessia();
 		//comando = scan.nextLine().toUpperCase();
-		//System.out.println("posição "+posicao+"\ngasolina "+combustivel);
+		//System.out.println("posiï¿½ï¿½o "+posicao+"\ngasolina "+combustivel);
 		System.out.println("TRAVESSIA DO DESERTO\n\n\n" +
 				"Voce esta em um acampamento e tem que atravessar um deserto\n" +
 				"seu caminhao possui 6 unidades de gasolina, e para se locomover\n" +
 				"ele utiliza uma unidade de combustivel, voce pode largar uma unidade\n" +
 				"de combustivel durante o percurso para recarregar mais tarde.\n" +
-				"No acampamento inicial o combustivel é ilimitado e seu caminhao\n" +
+				"No acampamento inicial o combustivel ï¿½ ilimitado e seu caminhao\n" +
 				"reabastece por completo.");
 		do {	
 			System.out.println("\n\nPara movimentar digite:\n" +
@@ -62,10 +62,10 @@ public class Travessia {
 			combustivel--;
 		}
 		else if(posicao==0){
-			System.out.println("Combustivel até a boca");
+			System.out.println("Combustivel atï¿½ a boca");
 			combustivel = 6;
 		}
-		else if(posicao==10){
+		else if(posicao==9){
 			System.out.println("GANHOU!");
 			System.exit(0);
 		}
@@ -139,7 +139,7 @@ public class Travessia {
 			st+="\nInicio, caminhao reabastecido";
 		}else{
 
-			st += "\n"+posicao+"ª posicao";
+			st += "\n"+posicao+"ï¿½ posicao";
 		}
 		st += "\nGasolina: "+combustivel+
 				"\nCombustivel nesta posicao do mapa: "+mapa[posicao];
