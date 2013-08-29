@@ -6,7 +6,8 @@ public class Travessia {
 	String comando = "";
 	int TAMANHO=10;
 	int[] mapa = new int[TAMANHO];
-	int combustivel = 6;
+	int MAX_TANQUE = 6;
+	int combustivel = MAX_TANQUE;
 	int posicao = 0;
 	public static void main(String[] args) {
 		String opc = "";
@@ -76,7 +77,7 @@ public class Travessia {
 			combustivel--;
 			if(posicao==0){
 				System.out.println("Tanque cheio!");
-				combustivel=6;
+				combustivel=MAX_TANQUE;
 			}
 			if((posicao!=0)&&(combustivel==0)){
 				System.out.println("\nPERDEU!");
@@ -88,7 +89,7 @@ public class Travessia {
 
 
 		if((combustivel>0) && (posicao > 0)){
-			if((mapa[posicao]<6)){
+			if((mapa[posicao]<MAX_TANQUE)){
 				combustivel--;
 				mapa[posicao]++;
 				System.out.println("O caminhao descarregou um tanque de combustivel na posicao no mapa\n_______________________________________\n");
@@ -102,15 +103,15 @@ public class Travessia {
 
 	public void carregar() {
 		if((posicao == 0)){
-			combustivel=6;
+			combustivel=MAX_TANQUE;
 		}
 
 		if(mapa[posicao]>0){
-			if(combustivel>6){
+			if(combustivel>MAX_TANQUE){
 				combustivel++;
 				mapa[posicao]--;
 			}else{
-				combustivel=6;
+				combustivel=MAX_TANQUE;
 			}
 		}
 
