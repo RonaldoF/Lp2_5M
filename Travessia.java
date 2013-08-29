@@ -71,7 +71,7 @@ public class Travessia {
 		}
 	}
 	public void voltar() {
-		if((combustivel>0)&&(posicao!=0)){
+		if((combustivel>0)&&(posicao>0)){
 			posicao--;
 			combustivel--;
 			if(posicao==0){
