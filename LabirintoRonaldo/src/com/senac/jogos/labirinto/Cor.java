@@ -1,7 +1,7 @@
 package com.senac.jogos.labirinto;
 
 public enum Cor {
-	VERMELHA("VermelhA"), 
+	VERMELHA("Vermelha"), 
 	VERDE("Verde"), 
 	AMARELA("Amarela"), 
 	AZUL("Azul"), 

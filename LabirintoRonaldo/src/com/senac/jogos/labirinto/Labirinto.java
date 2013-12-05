@@ -34,6 +34,7 @@ public class Labirinto {
 		teclado.close();
 	}
 
+
 	@SuppressWarnings("resource")
 	private void executaComando(String escolha) {
 		try {
@@ -76,22 +77,22 @@ public class Labirinto {
 
 	private void cmdPegarItem(String item) throws Exception {
 		Sala sala = salas[salaAtual];
-
+		
 		List<Item> itens = sala.getItens();
-		for (Item i : itens) {
-			if (item.equalsIgnoreCase(i.getDescricao())) {
-				if (i instanceof Chave)
+		for(Item i : itens){
+			if(item.equalsIgnoreCase(i.getDescricao())){
+				if(i instanceof Chave)
 					jogador.setChave((Chave) i);
-				if (i instanceof Arma)
+				if(i instanceof Arma)
 					jogador.setArma((Arma) i);
-				if (i instanceof Armadura)
+				if(i instanceof Armadura)
 					jogador.setArmadura((Armadura) i);
-
+				
 				itens.remove(i);
 				return;
 			}
 		}
-
+		
 		throw new Exception("Item invalido");
 	}
 
@@ -101,15 +102,15 @@ public class Labirinto {
 
 		if (item.equals("chave")) {
 			itens.add(jogador.getChave());
-			jogador.matarChave();
+			jogador.soltarChave();
 
 		} else if (item.equals("arma")) {
 			itens.add(jogador.getArma());
-			jogador.matarArma();
+			jogador.soltarArma();
 
 		} else if (item.equals("armadura")) {
 			itens.add(jogador.getArmadura());
-			jogador.matarArmadura();
+			jogador.soltarArmadura();
 
 		} else
 			throw new Exception("Item invalido");
@@ -123,7 +124,7 @@ public class Labirinto {
 			throw new Exception("Sem inimigos no ataque");
 
 		if (inimigo instanceof Armadilha) {
-			if (Range.getPercentual() >= 80) {
+			if (Range.getPercentual() > 80) {
 				conexao.setInimigo(null);
 				out.println("Armadilha desfeita!");
 			} else {
@@ -141,7 +142,7 @@ public class Labirinto {
 	}
 
 	private void atacarInimigo(Inimigo inimigo) {
-		if (Range.getPercentual() >= 20) {
+		if (Range.getPercentual() > 20) {
 			int ataque = jogador.getAtaque();
 			inimigo.setDano(ataque);
 			out.println("O " + inimigo + " recebeu " + ataque + " em danos.");
@@ -151,7 +152,7 @@ public class Labirinto {
 	}
 
 	private void atacarJogador(Inimigo inimigo) {
-		if (Range.getPercentual() >= 40) {
+		if (Range.getPercentual() >= 20) {
 			int ataque = inimigo.getAtaque();
 			jogador.setDano(ataque);
 			out.println("O jogador recebeu " + (ataque) + " em danos do "
@@ -168,6 +169,7 @@ public class Labirinto {
 		Conexao conexao = getConexao(direcao);
 
 		out.println(conexao.getInfo());
+		out.println("\nSTATUS "+jogador);
 	}
 
 	private void cmdMover(String direcao) throws Exception {
@@ -234,6 +236,7 @@ public class Labirinto {
 
 	private void exibeStatus() {
 
+		out.println("SALA ATUAL "+salaAtual);
 		out.println(salas[salaAtual]);
 
 	}
@@ -380,16 +383,26 @@ public class Labirinto {
 		Arma[] armas = new Arma[8 + 4 + 1];
 		for (int i = 0; i < armas.length; i++) {
 			if (i < 8)
-				armas[i] = new Arma("Adaga", 1);
+				armas[i] = new Arma("Adaga", 2);
 			else if (i < 8 + 4)
-				armas[i] = new Arma("Faca", 2);
+				armas[i] = new Arma("Faca", 3);
 			else
-				armas[i] = new Arma("Espada", 4);
+				armas[i] = new Arma("Espada", 5);
 		}
 		return armas;
 	}
 
 	public static void main(String[] args) {
+		out.println(" --COMANDOS--                  --DIRECOES--\n" +
+				"MOVER + DIRECAO               NORTE   SUL\n" +
+				"ATACAR + DIRECAO              LESTE   OESTE\n" +
+				"OLHAR + DIRECAO               ACIMA   ABAIXO\n" +                  
+				"PEGAR + NOME DO ITEM\n"+              
+				"LARGAR + TIPO DO ITEM");
 		(new Labirinto()).run();
+	}
+
+	public int getCountSalas() {
+		return countSalas;
 	}
 }

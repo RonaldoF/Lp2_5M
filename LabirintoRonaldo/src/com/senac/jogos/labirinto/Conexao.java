@@ -1,5 +1,4 @@
 package com.senac.jogos.labirinto;
-
 public class Conexao {
 	private int sala;
 	private Inimigo inimigo;
@@ -59,7 +58,7 @@ public class Conexao {
 	}
 
 	private Cor setRandomColor(){
-		if(Range.getPercentual() <= 40){
+		if(Range.getPercentual() > 60){
 			switch (new Range(1,4).getRandom()) {
 				case 1: return Cor.AMARELA;
 				case 2: return Cor.AZUL;
@@ -73,7 +72,7 @@ public class Conexao {
 	
 	public String toString()
 	{
-		String res = "Porta " + cor;
+		String  res= "Porta " + cor;
 		if (inimigo != null && !(inimigo instanceof Armadilha))
 			res += " guardada por um " + inimigo;
 		return res;
@@ -82,7 +81,7 @@ public class Conexao {
 	public String getInfo() {
 		String res = "Porta " + cor;
 		if (inimigo != null)
-			res += " guardada por um " + inimigo+"\nAtaque="+inimigo.ataque+"\nResistencia="+inimigo.resistencia;
+			res += " guardada por um " + inimigo+"\nAtaque: "+inimigo.ataque+"\nVida: "+inimigo.vida;
 		return res;
 	}
 

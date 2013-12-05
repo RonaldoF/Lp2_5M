@@ -7,7 +7,7 @@ public class Jogador extends Personagem {
 	private Chave chave;
 
 	public Jogador() {
-		super(1, 1, 20);
+		super(1, 0, 20);
 		this.arma = null;
 		this.armadura = null;
 		this.chave = null;
@@ -18,8 +18,8 @@ public class Jogador extends Personagem {
 	}
 
 	public void setArma(Arma arma) throws Exception {
-		if (this.arma == null)
-			throw new Exception("Seu player tem uma arma");
+		if (this.arma != null)
+			throw new Exception("O jogador já está equipado com uma "+arma.getDescricao());
 		this.arma = arma;
 	}
 
@@ -28,8 +28,8 @@ public class Jogador extends Personagem {
 	}
 
 	public void setArmadura(Armadura armadura) throws Exception {
-		if (this.armadura == null)
-			throw new Exception("Seu player tem uma armadura");
+		if (this.armadura != null)
+			throw new Exception("O jogador já está equipado com "+armadura.getDescricao());
 		this.armadura = armadura;
 	}
 
@@ -37,19 +37,20 @@ public class Jogador extends Personagem {
 		return chave;
 	}
 
-	public void setChave(Chave chave) throws Exception {
-		if (this.arma == null)
-			throw new Exception("Seu player tem uma chave");
+	public void setChave(Chave chave) throws Exception
+	{
+		if (this.chave != null)
+			throw new Exception("Jogador só pode pegar uma chave por vez");
 		this.chave = chave;
 	}
-
+	
 	public int getAtaque() {
 		int bonus = 0;
 		if (arma != null)
 			bonus += arma.getDano();
 		return ataque + bonus;
 	}
-	
+	@Override
 	public void setDano(int value) {
 		int total = value - resistencia;
 		if (armadura != null)
@@ -61,18 +62,19 @@ public class Jogador extends Personagem {
 		this.vida = 0;
 	}
 
-	public void matarArmadura() {
+	public void soltarArmadura() {
 		this.armadura = null;
 	}
 
-	public void matarArma() {
+	public void soltarArma() {
 		this.arma = null;
 	}
 
-	public void matarChave() {
+	public void soltarChave() {
 		this.chave = null;
 	}
 
+	
 	public String toString() {
 		int ataq = 0;
 		ataq = ataque;
@@ -88,7 +90,27 @@ public class Jogador extends Personagem {
 			ataq += arma.getDano();
 		}
 
-		return "Jogador" + "\nVida: " + vida + "\nAtaque: " + ataq
-				+ "\nDefesa: " + defesa;
+		return "JOGADOR" + "\nVida: " + vida + "\nAtaque: " + ataq +"  "+statusArma()
+				+ "\nDefesa: " + defesa + "  "+statusArmadura();
+	}
+
+	public String statusArma() {
+		String semArma = "" ;
+		if(this.arma==null){
+			semArma += "";
+		}else{
+			semArma += "Equipado com "+arma.getDescricao();
+		}
+		return semArma;
+	}
+
+	public String statusArmadura() {
+		String semArmadura = "";
+		if(this.armadura==null){
+			semArmadura += "";
+		}else{
+			semArmadura += "Equipado com "+armadura.getDescricao();
+		}
+		return semArmadura;
 	}
 }
